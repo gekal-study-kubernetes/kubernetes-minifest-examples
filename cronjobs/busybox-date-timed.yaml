@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: busybox-date-timed
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    metadata:
+      name: busybox-date-timed
+    spec:
+      template:
+        spec:
+          containers:
+            - command:
+                - date
+              image: busybox
+              name: busybox-date-timed
+          restartPolicy: OnFailure
